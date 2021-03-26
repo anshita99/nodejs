@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require ("express");
 const path = require("path");
 const app = express();
@@ -22,6 +23,9 @@ app.use(express.static(staticPath));
 app.set("view engine","hbs");
 app.set("views",templatePath);
 hbs.registerPartials(partialsPath);
+
+
+console.log(process.env.SECRET)
 
 
 
@@ -54,6 +58,7 @@ app.post("/signup",async (req,res)=>{
         const token=await userRegistration.generateAuthtoken();
         console.log("the token part"+token)
         const signedUp = await userRegistration.save();
+        console.log(signedUp);
         res.status(201).render("index")
     }catch(error){
         res.status(400).send(error);
@@ -71,9 +76,8 @@ app.post("/login",async(req,res)=>{
 
         const isMatch = await bcrypt.compare(password,useremail.password);
         const token=await useremail.generateAuthtoken();
-        console.log("the token part"+token)
-        // const token = await useremail.generateAuthtoken();
-        // console.log(token);
+        console.log("the token part "+token)
+        
         if(isMatch){
             res.status(201).render("index");
         }else{
