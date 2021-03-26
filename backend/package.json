@@ -24,6 +24,7 @@
     "content-type": "^1.0.4",
     "cookie": "^0.4.0",
     "cookie-jar": "^0.3.0",
+    "cookie-parser": "^1.4.5",
     "cookie-signature": "^1.0.6",
     "core-util-is": "^1.0.2",
     "cryptiles": "^0.2.2",
